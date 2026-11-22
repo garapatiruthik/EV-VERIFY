@@ -1,0 +1,242 @@
+[
+  {
+    "id": "REQ-BAT-001",
+    "description": "SOC remains within [0, 1] under charge and discharge.",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/unit/test_battery.py::test_soc_clamped_at_upper_limit",
+      "tests/unit/test_battery.py::test_soc_clamped_at_lower_limit",
+      "tests/property/test_invariants.py::test_soc_always_in_unit_interval"
+    ]
+  },
+  {
+    "id": "REQ-BAT-002",
+    "description": "Positive current decreases SOC; negative current increases SOC (coulomb counting).",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/unit/test_battery.py::test_positive_current_decreases_soc",
+      "tests/unit/test_battery.py::test_negative_current_increases_soc",
+      "tests/unit/test_battery.py::test_zero_current_preserves_soc"
+    ]
+  },
+  {
+    "id": "REQ-BAT-003",
+    "description": "Terminal voltage responds consistently to current and internal resistance (OCV - I*R).",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/unit/test_battery.py::test_terminal_voltage_discharge",
+      "tests/unit/test_battery.py::test_terminal_voltage_charge",
+      "tests/unit/test_battery.py::test_open_circuit_voltage_interpolation"
+    ]
+  },
+  {
+    "id": "REQ-BAT-004",
+    "description": "Battery temperature increases under sustained resistive load and cools toward ambient when unloaded.",
+    "severity": "medium",
+    "priority": "medium",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/unit/test_battery.py::test_temperature_rises_under_load",
+      "tests/unit/test_battery.py::test_temperature_cools_toward_ambient"
+    ]
+  },
+  {
+    "id": "REQ-MOT-001",
+    "description": "Positive applied torque increases motor speed under a compatible load.",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/unit/test_motor.py::test_positive_torque_increases_speed"
+    ]
+  },
+  {
+    "id": "REQ-MOT-002",
+    "description": "Applied torque never exceeds supervisor limit.",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/unit/test_supervisor.py::test_permitted_torque_never_exceeds_limit",
+      "tests/integration/test_normal_drive.py::test_applied_torque_respects_supervisor_limit"
+    ]
+  },
+  {
+    "id": "REQ-MOT-003",
+    "description": "Regenerative torque can produce negative pack current while rotating.",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/integration/test_regenerative_braking.py::test_regen_produces_negative_pack_current"
+    ]
+  },
+  {
+    "id": "REQ-SEN-001",
+    "description": "Invalid, missing or non-finite measurements are rejected.",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/unit/test_sensors.py::test_invalid_measurement_rejected",
+      "tests/unit/test_sensors.py::test_non_finite_measurement_rejected",
+      "tests/unit/test_supervisor.py::test_missing_measurement_rejected"
+    ]
+  },
+  {
+    "id": "REQ-SEN-002",
+    "description": "Stale measurements are detected using simulation timestamps (below / at / above timeout).",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/unit/test_sensors.py::test_stale_below_timeout",
+      "tests/unit/test_sensors.py::test_stale_at_timeout",
+      "tests/unit/test_sensors.py::test_stale_above_timeout"
+    ]
+  },
+  {
+    "id": "REQ-BMS-001",
+    "description": "Critical over-voltage results in a latched fault and zero permitted torque.",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/unit/test_supervisor.py::test_over_voltage_latches_fault",
+      "tests/integration/test_fault_transitions.py::test_over_voltage_latched_zero_torque"
+    ]
+  },
+  {
+    "id": "REQ-BMS-002",
+    "description": "Critical under-voltage results in a latched fault and zero permitted torque.",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/unit/test_supervisor.py::test_under_voltage_latches_fault",
+      "tests/integration/test_fault_transitions.py::test_under_voltage_latched_zero_torque"
+    ]
+  },
+  {
+    "id": "REQ-BMS-003",
+    "description": "Discharge over-current results in a protective fault.",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/unit/test_supervisor.py::test_over_current_discharge_fault"
+    ]
+  },
+  {
+    "id": "REQ-BMS-004",
+    "description": "Regenerative charging current is constrained by the charge limit.",
+    "severity": "medium",
+    "priority": "medium",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/unit/test_supervisor.py::test_over_current_charge_fault",
+      "tests/integration/test_regenerative_braking.py::test_charge_current_limit_respected"
+    ]
+  },
+  {
+    "id": "REQ-BMS-005",
+    "description": "Critical battery temperature results in a protective fault.",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "test_names": [
+      "tests/unit/test_supervisor.py::test_over_temperature_latches_fault",
+      "tests/integration/test_fault_transitions.py::test_over_temperature_latched_zero_torque"
+    ]
+  },
+  {
+    "id": "REQ-BMS-006",
+    "description": "Sensor dropout or invalid safety-critical sensor data results in a defined safe response.",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/integration/test_fault_transitions.py::test_sensor_dropout_safe_response",
+      "tests/integration/test_fault_recovery.py::test_dropout_recovery_after_reset"
+    ]
+  },
+  {
+    "id": "REQ-BMS-007",
+    "description": "Soft constraints cause torque derating before a critical fault threshold.",
+    "severity": "medium",
+    "priority": "medium",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/unit/test_supervisor.py::test_low_soc_torque_derating",
+      "tests/unit/test_supervisor.py::test_high_temp_torque_derating",
+      "tests/integration/test_low_soc.py::test_soc_derating_before_hard_limit"
+    ]
+  },
+  {
+    "id": "REQ-BMS-008",
+    "description": "Fault remains latched until explicit reset and safe recovery conditions are met.",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/integration/test_fault_recovery.py::test_fault_stays_latched_after_condition_clears",
+      "tests/integration/test_fault_recovery.py::test_reset_requires_safe_conditions"
+    ]
+  },
+  {
+    "id": "REQ-SIM-001",
+    "description": "Identical scenario and seed produce identical traces.",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/integration/test_normal_drive.py::test_determinism_identical_seed"
+    ]
+  },
+  {
+    "id": "REQ-LOG-001",
+    "description": "Each step records time, scenario, requested/applied torque, SOC, voltage, current, temperature, speed, state and active faults.",
+    "severity": "medium",
+    "priority": "medium",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "tests/integration/test_normal_drive.py::test_telemetry_schema",
+      "tests/unit/test_telemetry.py::test_step_record_fields"
+    ]
+  },
+  {
+    "id": "REQ-VER-001",
+    "description": "Each implemented requirement is linked to at least one automated test.",
+    "severity": "high",
+    "priority": "high",
+    "implemented": true,
+    "planned": false,
+    "test_names": [
+      "scripts/check_traceability.py"
+    ]
+  }
+]

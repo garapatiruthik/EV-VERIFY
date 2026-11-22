@@ -1,0 +1,43 @@
+{
+  "battery": {
+    "capacity_ah": 50.0,
+    "nominal_voltage_v": 350.0,
+    "voltage_min_v": 280.0,
+    "voltage_max_v": 420.0,
+    "soc_voltage_table_v": [
+      [0.0, 280.0],
+      [0.25, 320.0],
+      [0.5, 350.0],
+      [0.75, 380.0],
+      [1.0, 410.0]
+    ],
+    "internal_resistance_ohm": 0.05,
+    "max_discharge_current_a": 300.0,
+    "max_charge_current_a": 100.0,
+    "over_voltage_v": 430.0,
+    "under_voltage_v": 250.0,
+    "over_temp_c": 65.0,
+    "thermal_capacity_j_per_c": 5000.0,
+    "cooling_coefficient_w_per_c": 50.0,
+    "ambient_temp_c": 25.0,
+    "soc_derate_start": 0.20,
+    "soc_hard_min": 0.05,
+    "temp_derate_start_c": 50.0
+  },
+  "motor": {
+    "inertia_kgm2": 0.5,
+    "viscous_friction_nm_per_rad_s": 0.02,
+    "efficiency": 0.9,
+    "max_torque_nm": 400.0,
+    "min_speed_rad_s": 0.0
+  },
+  "supervisor": {
+    "stale_sensor_timeout_s": 1.0,
+    "derate_hysteresis": 0.05
+  },
+  "simulation": {
+    "dt_s": 0.01,
+    "default_seed": 42,
+    "default_duration_s": 20.0
+  }
+}
