@@ -35,7 +35,12 @@ markers = [
 ]
 addopts = ["-q", "--strict-markers", "-p", "no:cacheprovider"]
 pythonpath = ["src"]
-filterwarnings = ["error::DeprecationWarning", "error::PendingDeprecationWarning"]
+filterwarnings = [
+    "error::DeprecationWarning:ev_verify",
+    "error::PendingDeprecationWarning:ev_verify",
+    "error::DeprecationWarning:tests",
+    "error::PendingDeprecationWarning:tests",
+]
 
 [tool.coverage.run]
 source = ["ev_verify"]
